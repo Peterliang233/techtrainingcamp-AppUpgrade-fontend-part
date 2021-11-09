@@ -21,22 +21,6 @@
 <script>
 export default {
   data() {
-    const checkName = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('用户名不能为空'));
-      }
-      callback();
-    };
-    const validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('密码不能为空'));
-      } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
-        }
-        callback();
-      }
-    };
     return {
       ruleForm: {
         pass: '',
@@ -44,10 +28,18 @@ export default {
       },
       rules: {
         pass: [
-          { validator: validatePass, trigger: 'blur' }
+          {
+            required: true,
+            message: '用户名不能为空',
+            trigger: 'blur'
+          }
         ],
         name: [
-          { validator: checkName, trigger: 'blur' }
+          {
+            required: true,
+            message: '用户名不能为空',
+            trigger: 'blur'
+          }
         ]
       }
     };

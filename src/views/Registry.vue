@@ -26,14 +26,6 @@
 <script>
 export default {
   data() {
-    const checkName = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('用户名不能为空'));
-      } else if (!isNaN(value)) {
-        return callback(new Error('用户名不能为数字'));
-      }
-      callback();
-    };
     const validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
@@ -61,13 +53,26 @@ export default {
       },
       rules: {
         pass: [
-          { validator: validatePass, trigger: 'blur' }
+          {
+            required: true,
+            pattern: '[A-Za-z]|[0-9]{6-12}$',
+            message: '密码需要长度6-12的数字或英文字符',
+            trigger: 'blur'
+          }
         ],
         checkPass: [
-          { validator: validatePass2, trigger: 'blur' }
+          {
+            validator: validatePass2,
+            trigger: 'blur'
+          }
         ],
         name: [
-          { validator: checkName, trigger: 'blur' }
+          {
+            required: true,
+            pattern: '^[A-Za-z]{5,10}$',
+            message: '用户名只能是长度5-10的英文字符',
+            trigger: 'blur'
+          }
         ]
       }
     };
@@ -113,7 +118,6 @@ export default {
 .login-wrap {
   width: 100%;
   height: 100vh;
-  /*background: url("../static/login1.jpeg") center center no-repeat;*/
   background-size: 100% 100%;
   position: fixed;
 }
