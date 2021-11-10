@@ -97,7 +97,7 @@ export default {
         }
       }).
       catch(error => { // 除了请求失败的情况
-        this.open4(error)
+        this.open4(error.response.data.msg.detail)
       });
     }
   }

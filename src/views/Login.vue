@@ -76,7 +76,7 @@ export default {
           })
         }
       }).catch(error => {
-        this.open4(error)
+        this.open4(error.response.data.msg.detail)
       })
     }
   }
