@@ -28,16 +28,6 @@ export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入密码'));
-      } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
-        }
-        callback();
-      }
-    };
-    const validatePass2 = (rule, value, callback) => {
-      if (value === '') {
         callback(new Error('请再次输入密码'));
       } else if (value !== this.ruleForm.pass) {
         callback(new Error('两次输入密码不一致!'));
@@ -62,7 +52,7 @@ export default {
         ],
         checkPass: [
           {
-            validator: validatePass2,
+            validator: validatePass,
             trigger: 'blur'
           }
         ],
@@ -84,8 +74,8 @@ export default {
         type: 'success'
       });
     },
-    open4 () {
-      this.$message.error('用户名已经被使用');
+    open4 (error) {
+      this.$message.error(error);
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -106,8 +96,8 @@ export default {
           this.open2()
         }
       }).
-      catch(resp => { // 除了请求失败的情况
-        this.open4()
+      catch(error => { // 除了请求失败的情况
+        this.open4(error)
       });
     }
   }
@@ -115,14 +105,8 @@ export default {
 </script>
 
 <style scoped>
-.login-wrap {
-  width: 100%;
-  height: 100vh;
-  background-size: 100% 100%;
-  position: fixed;
-}
 h3 {
-  color: #42b983;
+  color: #67C23A;
   font-size: 24px;
 }
 </style>

@@ -10,9 +10,7 @@
         <el-form-item label="密码" prop="pass">
           <el-input type="password" placeholder="请输入密码" v-model="ruleForm.pass" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" icon="el-icon-user-solid"  @click="submitForm('ruleForm')">登 录</el-button>
-        </el-form-item>
+        <el-button type="primary" icon="el-icon-user-solid"  @click="submitForm('ruleForm')">登 录</el-button>
       </el-form>
     </div>
   </div>
@@ -47,12 +45,12 @@ export default {
   methods: {
     open2 () {
       this.$message({
-        message: '登录成功',
+        message: '注册成功',
         type: 'success'
       });
     },
     open4 () {
-      this.$message.error('帐号或者密码错误');
+      this.$message.error("登录失败");
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -70,7 +68,6 @@ export default {
         password: this.ruleForm.pass,
       }).then(res => {
         if (res.status === 200) {
-          console.log(res.data)
           this.open2()
           localStorage.setItem('token', res.data.msg.token)
           localStorage.setItem('username', this.ruleForm.name)
@@ -79,7 +76,7 @@ export default {
           })
         }
       }).catch(error => {
-        this.open4()
+        this.open4(error)
       })
     }
   }
@@ -87,13 +84,6 @@ export default {
 </script>
 
 <style scoped>
-.login-wrap {
-  width: 100%;
-  height: 100vh;
-  /*background: url("../static/login1.jpeg") center center no-repeat;*/
-  background-size: 100% 100%;
-  position: fixed;
-}
 h3 {
   color: #409EFF;
   font-size: 24px;
