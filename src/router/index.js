@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Registry from '../views/Registry.vue'
 import Login from '../views/Login.vue'
 import Main from '../views/Main.vue'
+import NotFound from "@/views/NotFound"
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '*',
+    name: 'error',
+    component: NotFound
   }
 ]
 
