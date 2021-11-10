@@ -52,4 +52,17 @@ a {
 a:hover {
   color: coral;
 }
+
+el-button {
+  text-align: center;
+}
+
+.login-wrap {
+  width: 100%;
+  height: 100vh;
+  /*background: url("../static/login1.jpeg") center center no-repeat;*/
+  background-size: 100% 100%;
+  position: fixed;
+}
+
 </style>
