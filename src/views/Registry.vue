@@ -45,7 +45,7 @@ export default {
         pass: [
           {
             required: true,
-            pattern: '[A-Za-z]|[0-9]{6-12}$',
+            pattern: '^[A-Za-z0-9]{6,12}$',
             message: '密码需要长度6-12的数字或英文字符',
             trigger: 'blur'
           }
