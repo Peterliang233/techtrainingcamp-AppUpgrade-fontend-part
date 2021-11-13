@@ -2,8 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Registry from '../views/Registry.vue'
 import Login from '../views/Login.vue'
-import Main from '../views/Main.vue'
+import Rule from '../views/Rule.vue'
 import NotFound from "@/views/NotFound"
+import WhiteList from "@/views/WhiteList"
+import Test from "@/views/Test"
+import Main from "@/views/Main"
 
 Vue.use(VueRouter)
 
@@ -16,20 +19,32 @@ const routes = [
   {
     path: '/sign_in',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Login
   },
   {
-    path: '/',
-    name: 'Main',
-    component: Main
+    path: '/rule',
+    name: 'Rule',
+    component: Rule
+  },
+  {
+    path: "/whitelist",
+    name: 'WhiteList',
+    component: WhiteList
   },
   {
     path: '*',
     name: 'error',
     component: NotFound
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  },
+  {
+    path: '/main',
+    name: 'Main',
+    component: Main
   }
 ]
 
