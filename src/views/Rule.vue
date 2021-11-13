@@ -53,7 +53,7 @@
           width="80">
         </el-table-column>
         <el-table-column
-          prop="max_os_api"
+          prop="min_os_api"
           label="支持的最小操作系统版本"
           width="80">
         </el-table-column>
@@ -82,7 +82,7 @@
           label="操作"
           width="300">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button @click="delRule(scope.row)" type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -152,8 +152,16 @@ export default {
     Head
   },
   methods: {
-    handleClick(row) {
-      console.log(row);
+    delRule(row) {
+      this.$axios.delete('/rule?rule_id=' + row.id).
+        then(res => {
+          if (res.status === 200) {
+            Global.methods.successOpen('删除成功')
+            this.getRule()
+          }
+      }).catch(error => {
+          Global.methods.failOpen(error.response.data.msg.detail)
+      })
     },
     getRule() {
       this.$axios.get('/rule/all').
@@ -166,7 +174,7 @@ export default {
       })
     },
     addRule() {
-      this.$axios.post('/rule/settings', {
+      this.$axios.post('/rule/new', {
         app_id: parseInt(this.form.app_id),
         platform: this.form.platform,
         download_url: this.form.download_url,
@@ -182,10 +190,11 @@ export default {
         update_tips: this.form.update_tips,
       }).
       then(res => {
-        console.log(res.data)
-        this.getRule()
-        this.dialogFormVisible = false
-        Global.methods.successOpen('添加成功')
+        if( res.status === 200) {
+          this.getRule()
+          this.dialogFormVisible = false
+          Global.methods.successOpen('添加成功')
+        }
       }).catch(error => {
         Global.methods.failOpen(error.response.data.msg.detail)
       })

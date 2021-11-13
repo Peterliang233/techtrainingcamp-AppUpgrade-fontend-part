@@ -6,7 +6,7 @@
       mode="horizontal"
       @select="handleSelect"
       text-color= "#000000"
-      active-text-color="#ffd04b">
+      active-text-color="#000000">
       <el-menu-item index="1">添加新版本规则</el-menu-item>
       <el-menu-item index="2">添加规则白名单</el-menu-item>
       <el-submenu index="3" style="float: right;">
