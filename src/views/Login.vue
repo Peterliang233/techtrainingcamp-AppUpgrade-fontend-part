@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import Global from "@/component/Global"
 export default {
   data() {
     return {
@@ -43,15 +44,6 @@ export default {
     };
   },
   methods: {
-    open2 () {
-      this.$message({
-        message: '注册成功',
-        type: 'success'
-      });
-    },
-    open4 () {
-      this.$message.error("登录失败");
-    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -63,20 +55,21 @@ export default {
     },
     handleLogin () {
       this.$axios.
-      post('/sign_in', {
+      post('/user/sign_in', {
         username: this.ruleForm.name,
         password: this.ruleForm.pass,
       }).then(res => {
         if (res.status === 200) {
-          this.open2()
+          Global.methods.successOpen('登录成功')
           localStorage.setItem('token', res.data.msg.token)
           localStorage.setItem('username', this.ruleForm.name)
           this.$router.replace({
-            path: '/'
+            path: '/rule'
           })
         }
       }).catch(error => {
-        this.open4(error.response.data.msg.detail)
+        console.log(error)
+        Global.methods.failOpen(error.response.data.msg.detail)
       })
     }
   }

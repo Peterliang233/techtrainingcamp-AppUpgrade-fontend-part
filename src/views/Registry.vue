@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Global from "@/component/Global"
 export default {
   data() {
     const validatePass = (rule, value, callback) => {
@@ -68,15 +69,6 @@ export default {
     };
   },
   methods: {
-    open2 () {
-      this.$message({
-        message: '注册成功',
-        type: 'success'
-      });
-    },
-    open4 (error) {
-      this.$message.error(error);
-    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -88,16 +80,16 @@ export default {
     },
     handleSignup () {
       this.$axios.
-      post('/sign_up', {
+      post('/user/sign_up', {
         username: this.ruleForm.name,
         password: this.ruleForm.pass,
       }).then(res => {
         if (res.data.code === 200) {
-          this.open2()
+          Global.methods.successOpen('注册成功')
         }
       }).
       catch(error => { // 除了请求失败的情况
-        this.open4(error.response.data.msg.detail)
+        Global.methods.failOpen(error.response.data.msg.detail)
       });
     }
   }
