@@ -33,11 +33,11 @@
         </el-col>
       </el-row>
       <el-dialog title="新增白名单" :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <el-form-item label="规则的ID" :label-width="formLabelWidth">
+        <el-form :model="form" :rules="rules" ref="form">
+          <el-form-item label="规则的ID" :label-width="formLabelWidth" prop="rule_id">
             <el-input v-model="form.rule_id" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="设备的ID" :label-width="formLabelWidth">
+          <el-form-item label="设备的ID" :label-width="formLabelWidth" prop="device_id">
             <el-input v-model="form.device_id" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -66,7 +66,17 @@ export default {
         rule_id: '',
         device_id: '',
       },
-      formLabelWidth: '200px'
+      formLabelWidth: '200px',
+      rules: {
+        rule_id: [
+          {
+            required: true,
+            message: '输入只能是正整数',
+            pattern: '^[1-9][0-9]+$',
+            trigger: 'blur'
+          }
+        ]
+      }
     }
   },
   methods: {

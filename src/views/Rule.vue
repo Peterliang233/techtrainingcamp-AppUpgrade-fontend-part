@@ -93,44 +93,44 @@
       </el-row>
 
       <el-dialog title="更新规则" :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <el-form-item label="app的唯一标识" :label-width="formLabelWidth">
+        <el-form :model="form" :rules="rules" ref="form">
+          <el-form-item label="app的唯一标识" :label-width="formLabelWidth" prop="app_id">
             <el-input v-model="form.app_id" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="平台" :label-width="formLabelWidth">
+          <el-form-item label="平台" :label-width="formLabelWidth" prop="platform">
             <el-input v-model="form.platform" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="下载链接" :label-width="formLabelWidth">
+          <el-form-item label="下载链接" :label-width="formLabelWidth" prop="download_url">
             <el-input v-model="form.download_url" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="包的当前版本" :label-width="formLabelWidth">
+          <el-form-item label="包的当前版本" :label-width="formLabelWidth" prop="update_version_code">
             <el-input v-model="form.update_version_code" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="包的MD5" :label-width="formLabelWidth">
+          <el-form-item label="包的MD5" :label-width="formLabelWidth" prop="md5">
             <el-input v-model="form.md5" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="可升级的最大版本" :label-width="formLabelWidth">
+          <el-form-item label="可升级的最大版本" :label-width="formLabelWidth" prop="max_update_version_code">
             <el-input v-model="form.max_update_version_code" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="可升级的最小版本" :label-width="formLabelWidth">
+          <el-form-item label="可升级的最小版本" :label-width="formLabelWidth" prop="min_update_version_code">
             <el-input v-model="form.min_update_version_code" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="支持的最大操作系统版本" :label-width="formLabelWidth">
+          <el-form-item label="支持的最大操作系统版本" :label-width="formLabelWidth" prop="max_os_api">
             <el-input v-model="form.max_os_api" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="支持的最小操作系统版本" :label-width="formLabelWidth">
+          <el-form-item label="支持的最小操作系统版本" :label-width="formLabelWidth" prop="min_os_api">
             <el-input v-model="form.min_os_api" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="CPU架构" :label-width="formLabelWidth">
+          <el-form-item label="CPU架构" :label-width="formLabelWidth" prop="cpu_arch">
             <el-input v-model="form.cpu_arch" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="渠道号" :label-width="formLabelWidth">
+          <el-form-item label="渠道号" :label-width="formLabelWidth" prop="channel_number">
             <el-input v-model="form.channel_number" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="弹窗标题" :label-width="formLabelWidth">
+          <el-form-item label="弹窗标题" :label-width="formLabelWidth" prop="title">
             <el-input v-model="form.title" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="弹窗的更新文本" :label-width="formLabelWidth">
+          <el-form-item label="弹窗的更新文本" :label-width="formLabelWidth" prop="update_tips">
             <el-input v-model="form.update_tips" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -221,6 +221,40 @@ export default {
         channel_number: '',
         title: '',
         update_tips: '',
+      },
+      rules: {
+        app_id: [
+          {
+            required: true,
+            message: '输入只能是数字串',
+            pattern: '[0-9]+$',
+            trigger: 'blur'
+          }
+        ],
+        min_os_api: [
+          {
+            required: true,
+            message: '输入的只能是数字',
+            pattern: '[0-0]+$',
+            trigger: 'blur'
+          }
+        ],
+        max_os_api: [
+          {
+            required: true,
+            message: '输入的只能是数字',
+            pattern: '[0-0]+$',
+            trigger: 'blur'
+          }
+        ],
+        cpu_arch: [
+          {
+            required: true,
+            message: '输入的只能是数字',
+            pattern: '[0-0]+$',
+            trigger: 'blur'
+          }
+        ],
       },
       formLabelWidth: '200px'
     }
