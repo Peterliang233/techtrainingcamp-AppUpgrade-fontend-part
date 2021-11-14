@@ -5,7 +5,6 @@ import Login from '../views/Login.vue'
 import Rule from '../views/Rule.vue'
 import NotFound from "@/views/NotFound"
 import WhiteList from "@/views/WhiteList"
-import Main from "@/views/Main"
 
 Vue.use(VueRouter)
 
@@ -34,11 +33,6 @@ const routes = [
     path: '*',
     name: 'error',
     component: NotFound
-  },
-  {
-    path: '/main',
-    name: 'Main',
-    component: Main
   }
 ]
 
