@@ -98,22 +98,22 @@
             <el-input v-model="form.app_id" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="平台" :label-width="formLabelWidth" prop="platform">
-            <el-input v-model="form.platform" autocomplete="off"></el-input>
+            <el-input placeholder="IOS/Android" v-model="form.platform" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="下载链接" :label-width="formLabelWidth" prop="download_url">
             <el-input v-model="form.download_url" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="包的当前版本" :label-width="formLabelWidth" prop="update_version_code">
-            <el-input v-model="form.update_version_code" autocomplete="off"></el-input>
+            <el-input placeholder="如8.1.3.01" v-model="form.update_version_code" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="包的MD5" :label-width="formLabelWidth" prop="md5">
             <el-input v-model="form.md5" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="可升级的最大版本" :label-width="formLabelWidth" prop="max_update_version_code">
-            <el-input v-model="form.max_update_version_code" autocomplete="off"></el-input>
+            <el-input placeholder="如8.1.3.01" v-model="form.max_update_version_code" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="可升级的最小版本" :label-width="formLabelWidth" prop="min_update_version_code">
-            <el-input v-model="form.min_update_version_code" autocomplete="off"></el-input>
+            <el-input placeholder="如8.1.3.01" v-model="form.min_update_version_code" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="支持的最大操作系统版本" :label-width="formLabelWidth" prop="max_os_api">
             <el-input v-model="form.max_os_api" autocomplete="off"></el-input>
@@ -122,10 +122,10 @@
             <el-input v-model="form.min_os_api" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="CPU架构" :label-width="formLabelWidth" prop="cpu_arch">
-            <el-input v-model="form.cpu_arch" autocomplete="off"></el-input>
+            <el-input placeholder="32/64"v-model="form.cpu_arch" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="渠道号" :label-width="formLabelWidth" prop="channel_number">
-            <el-input v-model="form.channel_number" autocomplete="off"></el-input>
+            <el-input placeholder="如xiaomi,huawei等" v-model="form.channel_number" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="弹窗标题" :label-width="formLabelWidth" prop="title">
             <el-input v-model="form.title" autocomplete="off"></el-input>
@@ -235,7 +235,7 @@ export default {
           {
             required: true,
             message: '输入的只能是数字',
-            pattern: '[0-0]+$',
+            pattern: '[0-9]+$',
             trigger: 'blur'
           }
         ],
@@ -243,7 +243,7 @@ export default {
           {
             required: true,
             message: '输入的只能是数字',
-            pattern: '[0-0]+$',
+            pattern: '[0-9]+$',
             trigger: 'blur'
           }
         ],
@@ -251,7 +251,7 @@ export default {
           {
             required: true,
             message: '输入的只能是数字',
-            pattern: '[0-0]+$',
+            pattern: '[0-9]+$',
             trigger: 'blur'
           }
         ],

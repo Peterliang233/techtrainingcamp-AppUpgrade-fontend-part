@@ -72,7 +72,7 @@ export default {
           {
             required: true,
             message: '输入只能是正整数',
-            pattern: '^[1-9][0-9]+$',
+            pattern: '^[1-9][0-9]*$',
             trigger: 'blur'
           }
         ]
