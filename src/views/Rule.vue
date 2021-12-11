@@ -83,6 +83,8 @@
           width="300">
           <template slot-scope="scope">
             <el-button @click="delRule(scope.row)" type="text" size="small">删除</el-button>
+            <el-button @click="offlineRule(scope.row)" type="text" size="small" v-if="scope.row.status">暂时下线</el-button>
+            <el-button @click="onlineRule(scope.row)" type="text" size="small" v-else>恢复上线</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -163,6 +165,28 @@ export default {
           Global.methods.failOpen(error.response.data.msg.detail)
       })
     },
+    offlineRule(row){
+      this.$axios.put('/rule/offline?rule_id=' + row.id).
+      then(res=>{
+        if (res.status === 200) {
+          Global.methods.successOpen("下线成功")
+          this.getRule()
+        }
+      }).catch(error => {
+        Global.methods.failOpen(error.response.data.msg.detail)
+      })
+    },
+    onlineRule(row){
+      this.$axios.put('/rule/online?rule_id=' + row.id).
+      then(res=>{
+        if (res.status === 200) {
+          Global.methods.successOpen("上线成功")
+          this.getRule()
+        }
+      }).catch(error => {
+        Global.methods.failOpen(error.response.data.msg.detail)
+      })
+    },
     getRule() {
       this.$axios.get('/rule/all').
       then(res => {
@@ -188,6 +212,7 @@ export default {
         channel_number: this.form.channel_number,
         title: this.form.title,
         update_tips: this.form.update_tips,
+        status: true,
       }).
       then(res => {
         if( res.status === 200) {
@@ -221,6 +246,7 @@ export default {
         channel_number: '',
         title: '',
         update_tips: '',
+        status: true,
       },
       rules: {
         app_id: [
